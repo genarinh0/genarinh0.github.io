@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-size: 17px;
+    color: #222829;
+    font-family: sans-serif;
+    font-weight: 100;
+    line-height: 1.8;
+    
+    margin-bottom: auto;
+}
+
+.text, button {
+    font-family: inherit;
+    font-size: 19px; 
+    font-weight: 800; 
+    letter-spacing: 2px;
+    color: white;
+}
+
+.header {
+    background-color: rgb(0, 0, 0); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: white;
+    padding: 5px 70px 5px 70px;
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    height: 45px;
+}
+    
+.mainbody {
+    padding: 0px 70px 10px 70px;
+}
+
+.info {
+    background-color: #E6E6E6;
+    padding-left: 80px;
+    margin-top: 100px;
+    padding-top: 30px;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    justify-items: center;
+    align-items: center;
+    height: auto;
+    padding: 20px 0px 20px 0px;
+    font-size: 12px;
+    margin-top: -40px;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.showcase {
+    flex: 33%;
+    height: 300px;
+}
+
+.support {
+    width: 200px;
+    height: 150px;
+    margin-right: 150px;
+    margin-top: 30px;
+}
+
+img {
+    width: 50px;
+    height: 40px;
+}
+
+button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+section {
+    display: flex; 
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h4 {
+    margin-right: 70px;
+    font-weight: 800;
+}
+
+p {
+    margin-bottom: 40px;
+}
