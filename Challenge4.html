@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Competencia</title>
+    <link rel="stylesheet">
+</head>
+<body>
+
+    <h2>Canciones</h2>
+    <div id="canciones"></div>
+
+    <script>
+        fetch("a.json")
+            .then(res => res.json())
+            .then(data => {
+                let contenedor = document.getElementById("canciones");
+
+                contenedor.innerHTML += data.persona1.titulo + " - " + data.persona1.autor + "<br>";
+                contenedor.innerHTML += data.persona2.titulo + " - " + data.persona2.autor + "<br>";
+                contenedor.innerHTML += data.persona3.titulo + " - " + data.persona3.autor + "<br>";
+                contenedor.innerHTML += data.persona4.titulo + " - " + data.persona4.autor + "<br>";
+            });
+    </script>
+
+</body>
+</html>
