@@ -10,16 +10,16 @@
     <div id="canciones"></div>
 
     <script>
-        fetch("a.json")
-            .then(res => res.json())
-            .then(data => {
-                let contenedor = document.getElementById("canciones");
+        async function obtenerJSON(){
+                    const respuesta = await fetch("/cancion.json");
+                    const datos = await respuesta.json();
 
-                contenedor.innerHTML += data.persona1.titulo + " - " + data.persona1.autor + "<br>";
-                contenedor.innerHTML += data.persona2.titulo + " - " + data.persona2.autor + "<br>";
-                contenedor.innerHTML += data.persona3.titulo + " - " + data.persona3.autor + "<br>";
-                contenedor.innerHTML += data.persona4.titulo + " - " + data.persona4.autor + "<br>";
-            });
+                    let d = document.createElement("p");
+                    d.textContent = datos.works[4].title;
+                    d.setAttribute("style", "color: blue; font-size: 30px");
+                    document.getElementById("contenedor").appendChild(d);
+                }
+                obtenerJSON();
     </script>
 
 </body>
