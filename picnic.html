@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi página con Picnic CSS</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  
+  <style>
+    .flex.demo{
+     margin: .2em 0;
+     background: #2ecc40;
+     text-align: center;
+    }
+    .flex.demo div {
+      border:.1em solid pink;
+    }
+
+  </style>
+</head>
+<body>
+  
+
+  <button id="musico">Ve por mi artista favorito</button>
+  <button class="success" id="musico_amigo">Ve por otro artista favorito</button>
+  <div class="flex two four-1200 demo">
+    <div id="bio">1</div>
+    <div id="imagen">2</div>
+    <div id="bio2">3</div>
+    <div id="imagen2">4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+  
+  </div>
+
+  <div class="tabs two">
+    <input id="tab-1" type="radio" name='tabgroupB' checked />
+    <label class="pseudo button toggle" for="tab-1">¿Cómo fue tu vivencia el domingo?</label>
+    <input id="tab-2" type="radio" name='tabgroupB' checked />
+    <label class="pseudo button toggle" for="tab-2">En el contexto actual: ¿Qué te gustaría que cambiara?</label>
+    <div class="row">
+      <div>
+          <p>Me la pase todo el dia en la casa con mis roomies viendo noticias y en ratos peliculas para 
+            mantener la calma.
+          </p>
+      </div>
+      <div>
+          <p>Me gustaria que pudiera todo el mundo salir a la calle y vivir su vida sin miedo a ser victima
+            de algun delito aunque se que es poco realista.
+          </p>
+      </div>
+    </div>
+  </div>
+
+    <script>
+    
+    let biografia;
+    let imagen;
+    let biografia2;
+    let imagen2;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        biografia = document.getElementById("bio");
+        document.getElementById("musico").addEventListener("click", obtenerJSON1);
+        imagen = document.getElementById("imagen");
+
+        biografia2 = document.getElementById("bio2");
+        document.getElementById("musico_amigo").addEventListener("click", obtenerJSON2);
+        imagen2 = document.getElementById("imagen2");
+
+    });
+
+
+     async function obtenerJSON1() {
+       const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=Banda Sinaloense MS de Sergio Lizárraga');  
+       const datos = await respuesta.json();
+       console.log(datos);
+       
+       const textoArtista = document.createElement('p');
+        textoArtista.textContent = datos.artists[0].strBiographyEN
+        biografia.appendChild(textoArtista);
+
+        const imagenArtista= document.createElement('img');
+        imagenArtista.setAttribute('src', 'https://photos.bandsintown.com/thumb/20443840.jpeg');
+        imagen.appendChild(imagenArtista);
+     }
+
+     async function obtenerJSON2() {
+       const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=Twenty One Pilots');  
+       const datos = await respuesta.json();
+       console.log(datos);
+       
+       const textoArtista = document.createElement('p');
+        textoArtista.textContent = datos.artists[0].strBiographyEN
+        biografia2.appendChild(textoArtista);
+
+        const imagenArtista= document.createElement('img');
+        imagenArtista.setAttribute('src', 'https://www.cultura.gal/sites/default/files/images/evento/descarga_1_20.jpg');
+        imagen2.appendChild(imagenArtista);
+     }
+
+
+
+    </script>
+</body>
+</html>
