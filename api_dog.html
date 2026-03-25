@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dog API</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    </head>
+    <body>
+        <button id="DogAPI">Dog</button>
+        <button id="getImage">Imagen</button>
+        <button id="meGusta" style="background-color: lightgreen;">Me Gusta</button>
+        <button id="noMeGusta" style="background-color: rgba(211, 55, 55, 0.685);">No Me Gusta</button>
+        <div id="Imagenes"><img id="perroImagen" style="width: 500px; height: 400px; margin-left: 10%;"></div>
+
+        <script>
+            let imageID;
+
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById("DogAPI").addEventListener("click", obtenerInfo);
+                document.getElementById("getImage").addEventListener("click", obtenerImagen);
+                document.getElementById("meGusta").addEventListener("click", votar);
+                document.getElementById("noMeGusta").addEventListener("click", votar);
+            });
+
+            async function obtenerInfo(){            
+                try {
+                        const respuesta = await fetch("https://api.thedogapi.com/v1/breeds?limit=100",      {
+                        method: "GET", 
+                        headers: {
+                            "x-api-key": "live_tA9EbkgPDUaT4uJyILx1IxcbAAsHDYvM5RZdN9fat9YkfUbvVERuc22gZOocAbwh"
+                        }
+                });
+                    if (!respuesta.ok) {
+                    console.log("Error");
+                    //throw new Error("Error");
+                    }
+                    const data = await respuesta.json();
+                    console.log(data);
+                } catch (error) {
+                    console.error("Error:", error.message);
+                }
+            }
+
+            async function obtenerImagen(){            
+                try {
+                        const respuesta = await fetch("https://api.thedogapi.com/v1/images/search?limit=1",      {
+                        method: "GET", 
+                        headers: {
+                            "x-api-key": "live_tA9EbkgPDUaT4uJyILx1IxcbAAsHDYvM5RZdN9fat9YkfUbvVERuc22gZOocAbwh"
+                        }
+                });
+                    if (!respuesta.ok) {
+                    console.log("Error");
+                    //throw new Error("Error");
+                    }
+                    const data = await respuesta.json();
+                    console.log(data);
+
+                    const imagenPerro = document.getElementById("perroImagen");
+                    imagenPerro.setAttribute('src', data[0].url);
+
+                    imageID = data[0].id;
+                    console.log("Id de la Imagen:", imageID);
+                } catch (error) {
+                    console.error("Error:", error.message);
+                }
+            }
+
+            async function votar(){
+                try{
+                    const respuesta = await fetch("https://api.thedogapi.com/v1/votes", {
+                        method: "POST", 
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-api-key": "live_tA9EbkgPDUaT4uJyILx1IxcbAAsHDYvM5RZdN9fat9YkfUbvVERuc22gZOocAbwh"
+                        },
+                        body: JSON.stringify({
+                            image_id: imageID,
+                            value: 1
+                        })
+                    });
+
+                    if (!respuesta.ok) {
+                    console.log("Error");
+                    //throw new Error("Error");
+                    }
+                    const data = await respuesta.json();
+                    console.log(data);
+                }catch (error){
+                    console.error("Error:", error.message);
+                }
+            }
+        </script>
+    </body>
+</html>
