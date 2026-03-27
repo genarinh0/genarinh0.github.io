@@ -5,7 +5,9 @@
             async function getJSON(){
                 const response = await fetch("https://api.agify.io?name=bella");
                 const respuesta = await response.json();
-                console.log(respuesta);
+
+                const edad = respuesta.age;
+                console.log("Edad basada en tu nombre: ", edad);
             }
 
             getJSON();
