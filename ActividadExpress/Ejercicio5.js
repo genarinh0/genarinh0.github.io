@@ -16,6 +16,11 @@ app.get('/otraBienvenida', (req, res) => {
   res.sendFile(path.join(__dirname, 'bienvenida.html'));
 });
 
+app.post("/api/otro", (req, res) => {
+  console.log("El cuerpo de la peticion: ", req.body);
+  res.sendStatus(200);
+});
+
 app.listen(1984, () => {
   console.log('Up and up');
 });

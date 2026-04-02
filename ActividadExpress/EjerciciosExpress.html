@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <body style="display: flex; flex-direction: column; align-items: center; gap: 50px; margin-top: 20px;">
+        <div style="background-color: bisque; width: fit-content; padding: 10px; border-radius: 20px;">
+            <h2>API AGIFY (EJERCICIO 0)</h2>
+            <input type="text" placeholder="Ingresa tu nombre: " id="nombre">
+            <button id="sendBtn">OK</button>
+            <h3 id="mostrarEdad"></h3>
+        </div>
+        <div style="background-color: bisque; width: fit-content; padding: 10px; border-radius: 20px;">
+            <h2>AudioExpress (Ejercicio 2)</h2>
+           <audio src="AudioExpress.wav" controls></audio> 
+        </div>
+        
+        <script>
+            async function getEdad(nombre){
+                const response = await fetch(`https://api.agify.io?name=${nombre}`);
+                const respuesta = await response.json();
+
+                const edad = respuesta.age;
+                return edad;
+            }
+
+            const btn = document.getElementById("sendBtn");
+            const textoEdad = document.getElementById("mostrarEdad");
+            
+            btn.addEventListener("click", async () => {
+                const nombre = document.getElementById("nombre").value;
+                if (!nombre) return;
+                
+                const edad = await getEdad(nombre);
+                textoEdad.innerHTML = "Tu edad segun tu nombre es: " + edad;
+            })
+        </script>
+    </body>
+</html>
