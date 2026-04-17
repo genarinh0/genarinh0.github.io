@@ -5,6 +5,9 @@
   import Counter from './lib/Counter.svelte'
   import Mascota from './lib/Mascota.svelte'
   import ListaMascotas from './lib/ListaMascotas.svelte'
+  import MiMapa from './lib/MiMapa.svelte'
+  import MiVideo from './lib/MiVideoConElQueLloro.svelte'
+  import Publicaciones from './lib/Publicaciones.svelte'
 </script>
 
 <section id="center">
@@ -19,6 +22,9 @@
   </div>
   <Counter /> 
   <ListaMascotas />
+  <MiMapa />
+  <MiVideo /> 
+  <Publicaciones />
 </section>
 
 <div class="ticks"></div>
